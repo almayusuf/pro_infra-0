@@ -27,6 +27,21 @@ resource "null_resource" "set-project" {
 	}
 }
 
+resource "null_resource" "enable-apis" {
+	 triggers = {
+    always_run = "${timestamp()}"
+  }
+	
+	provisioner "local-exec" {
+	command = <<-EOT
+        gcloud services enable compute.googleapis.com
+        gcloud services enable dns.googleapis.com
+        gcloud services enable storage-api.googleapis.com
+        gcloud services enable container.googleapis.com
+    EOT
+	}
+}
+
 resource "null_resource" "unset-project" {
 	provisioner "local-exec" {
 	when = destroy

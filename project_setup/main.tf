@@ -1,5 +1,5 @@
 data "google_billing_account" "acct" {
-	display_name = "terraform_class"
+	display_name = "project"
 	open = true
 }
 

@@ -19,6 +19,15 @@ cluster-setup :
 
 
 
+project-setup-destroy : 
+		cd 1.project_setup && terraform destroy -auto-approve
+
+
+
+
+cluster-setup-destroy : 
+		cd 2.cluster_setup && terraform destroy -auto-approve
+
 
 
 project-setup-cleanup : 

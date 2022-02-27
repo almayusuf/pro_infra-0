@@ -12,6 +12,8 @@ namespace-setup : cluster-setup
 		cd 3.namespace_setup && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve 
 
 
+ingress-controller-setup : 
+		cd 4.ingress-controller-setup && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve 
 
 
 
@@ -19,9 +21,9 @@ namespace-setup : cluster-setup
 
 
 
-# Warning !!!!       Below lines w
 
-ill destroy the infrastructure
+
+# Warning !!!!       Below lines will destroy the infrastructure
 project-setup-destroy : 
 		cd 1.project_setup && terraform destroy -auto-approve
 

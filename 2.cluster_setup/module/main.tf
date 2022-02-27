@@ -46,3 +46,12 @@ variable "gke_config" {
 		preemptible = true
 	}
 }
+resource "null_resource" "set-kubeconfig" {
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+
+  provisioner "local-exec" {
+    command = "gcloud container clusters get-credentials ${var.gke_config["cluster_name"]} --region ${var.gke_config["region"]}"
+  }
+}

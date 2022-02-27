@@ -1,56 +1,27 @@
-data "google_billing_account" "acct" {
-	display_name = "project"
-	open = true
-}
-
-resource "random_password" "password" {
-	length = 16
-	number = false
-	special = false
-	lower = true
-	upper = false
-}
-
-resource "google_project" "testproject" {
-	name = "testproject"
-	project_id = random_password.password.result
-	billing_account = data.google_billing_account.acct.id
-}
-
-resource "null_resource" "set-project" {
-	 triggers = {
-    always_run = "${timestamp()}"
+module "account_setup" {
+  source = "./module"
+  account_setup = {
+    billing_account_name = "project"
+    project_name         = "testproject2"
+    bucket_name          = "backend"
   }
-	
-	provisioner "local-exec" {
-	command = "gcloud config set project ${google_project.testproject.project_id}"
-	}
 }
+output full {
+    value = <<-EOF
+    ####################################################################################################################################################################################
+    ####################################################################################################################################################################################
+    ####################################################################################################################################################################################
+    
+    
+    
+    Your Project ID is ${module.account_setup.project_id}
+    Your Project Name is ${module.account_setup.project_name}
+    Your Bucket Name is ${module.account_setup.bucketname}
 
-resource "null_resource" "enable-apis" {
-	 triggers = {
-    always_run = "${timestamp()}"
-  }
-	
-	provisioner "local-exec" {
-	command = <<-EOT
-        gcloud services enable compute.googleapis.com
-        gcloud services enable dns.googleapis.com
-        gcloud services enable storage-api.googleapis.com
-        gcloud services enable container.googleapis.com
-    EOT
-	}
-}
 
-resource "null_resource" "unset-project" {
-	provisioner "local-exec" {
-	when = destroy
-	command = "gcloud config unset project"
-	}
-}
-resource "google_storage_bucket" "backend-bucket" {
-  name          = "backend-${random_password.password.result}"
-  location      = "US"
-  force_destroy = false
-  storage_class = "COLDLINE"
+
+    ####################################################################################################################################################################################
+    ####################################################################################################################################################################################
+    ####################################################################################################################################################################################
+    EOF
 }

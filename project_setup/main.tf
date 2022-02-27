@@ -48,3 +48,9 @@ resource "null_resource" "unset-project" {
 	command = "gcloud config unset project"
 	}
 }
+resource "google_storage_bucket" "backend-bucket" {
+  name          = "backend-${random_password.password.result}"
+  location      = "US"
+  force_destroy = false
+  storage_class = "COLDLINE"
+}

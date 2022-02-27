@@ -30,6 +30,10 @@ cluster-setup-destroy :
 		cd 2.cluster_setup && terraform destroy -auto-approve
 
 
+namespace-setup-destroy : 
+		cd 3.namespace_setup && terraform destroy -auto-approve
+
+
 
 project-setup-cleanup : 
 		cd project_setup && rm -rf .terraform* terraform.tfstate*

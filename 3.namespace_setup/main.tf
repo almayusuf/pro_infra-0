@@ -1,4 +1,4 @@
-module "tools-namespace" {
+module "tools" {
   source = "./module"
   annotations = {
     name = "new-annotation"
@@ -9,7 +9,7 @@ module "tools-namespace" {
   name = "tools"
 }
 
-module "dev-namespace" {
+module "dev" {
   source = "./module"
   annotations = {
     name = "new-annotation"
@@ -18,4 +18,4 @@ module "dev-namespace" {
     name = "new-labels"
   }
   name = "dev"
-}
+} 

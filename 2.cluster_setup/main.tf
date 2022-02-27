@@ -1,5 +1,5 @@
 module "gke" {
-  source         = "./module/"
+  source = "./module/"
   gke_config = {
     region         = "us-central1"
     zone           = "us-central1-c"

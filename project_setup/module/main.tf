@@ -59,7 +59,7 @@ resource "google_storage_bucket" "backend-bucket" {
   location      = "US"
   force_destroy = false
   storage_class = "COLDLINE"
-  project  = google_project.testproject.project_id
+  project       = google_project.testproject.project_id
 }
 
 

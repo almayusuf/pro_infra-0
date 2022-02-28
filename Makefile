@@ -34,6 +34,11 @@ namespace-setup-destroy :
 		cd 3.namespace_setup && terraform destroy -auto-approve
 
 
+ingress-controller-setup-destroy : 
+		cd 4.ingress-controller-setup && terraform destroy -auto-approve 
+
+
+
 
 
 # Warning !!!       Below lines will remove/clean the insfrastructure

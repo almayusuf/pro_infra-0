@@ -9,6 +9,7 @@ resource "helm_release" "nginx_ingress" {
   version    = var.nginx_ingress["version"]
   repository = var.nginx_ingress["repository"]
   chart      = var.nginx_ingress["chart"]
+  namespace  = var.nginx_ingress["namespace"]
   set {
     name  = var.nginx_ingress["service_type"]
     value = var.nginx_ingress["value"]
@@ -22,7 +23,8 @@ variable "nginx_ingress" {
     repository   = "https://charts.bitnami.com/bitnami"
     chart        = "nginx-ingress-controller"
     service_type = "service.type"
-    value        = "ClusterIP"
+    value        = "LoadBalancer"
     version      = "9.1.9"
+    namespace    = "default"
   }
 }

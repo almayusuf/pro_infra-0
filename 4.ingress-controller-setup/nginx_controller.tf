@@ -10,4 +10,3 @@ module "nginx_controller" {
     namespace    = "default"
   }
 }
-

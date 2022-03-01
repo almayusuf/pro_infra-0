@@ -1,14 +1,14 @@
 module "jenkins-terraform-k8s-namespace" {
-  source  = "./modules/terraform-k8s-namespace/"
-  deployment_namespace  = "jenkins"
+  source               = "./modules/terraform-k8s-namespace/"
+  deployment_namespace = "jenkins"
 }
 
 module "jenkins-terraform-helm" {
-  source  = "./modules/terraform-helm/"
-  deployment_name         = "jenkins"
-  deployment_namespace  = "jenkins"
-  deployment_path         = "charts/jenkins/"
-  values_yaml = <<EOF
+  source               = "./modules/terraform-helm/"
+  deployment_name      = "jenkins"
+  deployment_namespace = "jenkins"
+  deployment_path      = "charts/jenkins/"
+  values_yaml          = <<EOF
 controller:
   adminUser: "${var.jenkins_username}"
   adminPassword: "${var.jenkins_password}"

@@ -1,9 +1,9 @@
 module "external-dns-terraform-helm" {
-  source  = "./modules/terraform-helm/"
-  deployment_name         = "external-dns-deployment"
-  deployment_namespace  = "external-dns"
-  deployment_path         = "charts/external-dns"
-  values_yaml = <<EOF
+  source               = "./modules/terraform-helm/"
+  deployment_name      = "external-dns-deployment"
+  deployment_namespace = "external-dns"
+  deployment_path      = "charts/external-dns"
+  values_yaml          = <<EOF
 provider: google
 google:
   project: "${var.google_project_id}"

@@ -1,17 +1,17 @@
-variable email {
-    default = "farrukhsadykov@gmail.com"
+variable "email" {
+  default = "farrukhsadykov@gmail.com"
 }
 variable "google_credentials_json" {
-    default = "service-account.json"
+  default = "service-account.json"
 }
 variable "google_project_id" {
-    description = "your project ID"
+  description = "your project ID"
 }
 variable "grafana_username" {
-    default = "admin"
+  default = "admin"
 }
 
 variable "grafana_password" {
-    default = "password"
+  default = "password"
 }
 variable "google_domain_name" {}

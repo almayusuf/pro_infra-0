@@ -1,9 +1,9 @@
 module "grafana-terraform-helm" {
-  source  = "./modules/terraform-helm/"
-  deployment_name         = "grafana"
-  deployment_namespace  = "grafana"
-  deployment_path         = "charts/grafana/"
-  values_yaml = <<EOF
+  source               = "./modules/terraform-helm/"
+  deployment_name      = "grafana"
+  deployment_namespace = "grafana"
+  deployment_path      = "charts/grafana/"
+  values_yaml          = <<EOF
 ingress:
   enabled: true
   annotations:

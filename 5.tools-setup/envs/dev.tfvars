@@ -1,0 +1,5 @@
+email = "farrukhsadykov@gmail.com"
+google_project_id = "arkipjmmvbewegll"
+google_domain_name = "projectxconsulting.net"
+grafana_username = "admin"
+grafana_password = "strongpassword"

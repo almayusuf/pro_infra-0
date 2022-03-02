@@ -26,3 +26,7 @@ domain-setup : tools-setup
 
 jenkins-setup : domain-setup 
 		cd 7.jenkins-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve  -var-file envs/dev.tfvars
+
+
+
+# Destroy 

@@ -47,6 +47,9 @@ variable "gke_config" {
 	}
 }
 resource "null_resource" "set-kubeconfig" {
+    depends_on = [
+      google_container_cluster.primary
+    ]
   triggers = {
     always_run = "${timestamp()}"
   }

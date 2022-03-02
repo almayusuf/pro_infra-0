@@ -57,7 +57,7 @@ resource "google_storage_bucket" "backend-bucket" {
   ]
   name          = "${var.account_setup["bucket_name"]}-${random_password.password.result}"
   location      = "US"
-  force_destroy = false
+  force_destroy = true
   storage_class = "COLDLINE"
   project       = google_project.testproject.project_id
 }
@@ -75,8 +75,8 @@ resource "null_resource" "unset-project" {
 variable "account_setup" {
   type = map(any)
   default = {
-    billing_account_name = "project"
-    project_name         = "testproject2"
+    billing_account_name = "My Billing Account"
+    project_name         = "testprojectx"
     bucket_name          = "backend"
   }
 }

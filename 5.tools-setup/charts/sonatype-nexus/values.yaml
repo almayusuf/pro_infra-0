@@ -241,7 +241,7 @@ ingress:
   path: /
   pathType: Prefix
   labels: {}
-  annotations: {}
+  annotations: {}  
   # # NOTE: Can't use 'false' due to https://github.com/jetstack/kube-lego/issues/173.
   # kubernetes.io/ingress.allow-http: true
   # kubernetes.io/ingress.class: gce
@@ -279,14 +279,14 @@ ingressDocker:
     hosts:
   # Specify custom rules in addition to or instead of the nexus-proxy rules
   rules:
-  # - host: http://nexus.127.0.0.1.nip.io
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: additional-svc
-  #         servicePort: 80
+  - host: nexus.127.0.0.1.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: additional-svc
+          servicePort: 80
 
-  # className: nginx
+  className: nginx
 
 affinity: {}
 

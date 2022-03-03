@@ -51,7 +51,7 @@ module "grafana" {
     name = "new-labels"
   }
   name = "grafana"
-} 
+}
 module "canada" {
   source = "./module"
   annotations = {

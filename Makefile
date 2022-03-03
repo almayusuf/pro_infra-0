@@ -31,3 +31,7 @@ jenkins-setup : domain-setup
 nexus-setup : jenkins-setup 
 		cd 8.nexus-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve 
 
+
+vault-setup : nexus-setup
+		cd 9.vault-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve 
+

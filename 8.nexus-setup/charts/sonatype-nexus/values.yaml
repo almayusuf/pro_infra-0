@@ -117,6 +117,8 @@ nexusProxy:
   targetPort: 8080
   # labels: {}
   env:
+    # nexusDockerHost: 127.0.0.1
+    # nexusHttpHost: 127.0.0.1
     # Example for javaOptions : "-Xms3G -Xmx3G -XX:MaxDirectMemorySize=3G"
     javaOptions:
     nexusDockerHost:
@@ -237,7 +239,7 @@ rbac:
   annotations: {}
 
 ingress:
-  enabled: false
+  enabled: true
   path: /
   pathType: Prefix
   labels: {}
@@ -250,17 +252,30 @@ ingress:
   tls:
     enabled: true
     secretName: nexus-tls
-    hosts:
+    hosts:  
   # Specify custom rules in addition to or instead of the nexus-proxy rules
   rules:
-  # - host: http://nexus.127.0.0.1.nip.io
-  #   http:
-  #     paths:
-  #     - backend:
-  #         serviceName: additional-svc
-  #         servicePort: 80
-
-  # className: nginx
+    - host: nexus.projectxconsulting.net
+      http:
+        paths:
+        - backend:
+            service:
+              name: sonatype-nexus
+              port:
+                number: 8080
+          path: /
+          pathType: Prefix
+    - host: docker.projectxconsulting.net   
+      http:
+        paths:
+        - backend:
+            service:
+              name: sonatype-nexus
+              port:
+                number: 5000
+          path: /
+          pathType: Prefix
+  className: nginx
 
 ingressDocker:
   enabled: false
@@ -278,13 +293,13 @@ ingressDocker:
     secretName: nexus-tls
     hosts:
   # Specify custom rules in addition to or instead of the nexus-proxy rules
-  rules:
-  - host: nexus.127.0.0.1.nip.io
-    http:
-      paths:
-      - backend:
-          serviceName: additional-svc
-          servicePort: 80
+  # rules:
+  # - host: nexus.127.0.0.1.nip.io
+  #   http:
+  #     paths:
+  #     - backend:
+  #         serviceName: additional-svc
+  #         servicePort: 80
 
   className: nginx
 

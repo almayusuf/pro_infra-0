@@ -1,7 +1,8 @@
 provider "helm" {
-    experiments {
-    manifest = true
-  }
+#     experiments {
+#     manifest = true
+#   }
+# Should be disabled. It is giving an error
   kubernetes {
     config_path = "~/.kube/config"
   }

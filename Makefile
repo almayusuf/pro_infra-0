@@ -27,3 +27,4 @@ vault-setup : nexus-setup
 
 sonarqube-setup : vault-setup
 		cd 10.sonarqube-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
+		

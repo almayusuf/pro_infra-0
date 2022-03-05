@@ -3,29 +3,19 @@ kind: Service
 metadata:
   name: {{ template "webhook.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
-{{- with .Values.webhook.serviceAnnotations }}
-  annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
   labels:
     app: {{ include "webhook.name" . }}
     app.kubernetes.io/name: {{ include "webhook.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: "webhook"
-    {{- include "labels" . | nindent 4 }}
-    {{- with .Values.webhook.serviceLabels }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    helm.sh/chart: {{ include "webhook.chart" . }}
 spec:
-  type: {{ .Values.webhook.serviceType }}
-  {{- with .Values.webhook.loadBalancerIP }}
-  loadBalancerIP: {{ . }}
-  {{- end }}
+  type: ClusterIP
   ports:
   - name: https
     port: 443
-    protocol: TCP
-    targetPort: "https"
+    targetPort: {{ .Values.webhook.securePort }}
   selector:
     app.kubernetes.io/name: {{ include "webhook.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

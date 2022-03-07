@@ -4,14 +4,15 @@ module "jenkins-terraform-k8s-namespace" {
 }
 
 module "jenkins-terraform-helm" {
+    depends_on = [
+      kubernetes_persistent_volume_claim.example
+    ]
   source               = "./modules/terraform-helm/"
   deployment_name      = "jenkins"
   deployment_namespace = "jenkins"
   deployment_path      = "charts/jenkins/"
   values_yaml          = <<EOF
 controller:
-  adminUser: "${var.jenkins_username}"
-  adminPassword: "${var.jenkins_password}"
   ingress:
     enabled: yes
     apiVersion: "extensions/v1beta1"
@@ -46,4 +47,15 @@ resource "kubernetes_persistent_volume_claim" "example" {
     }
     storage_class_name = "standard"
   }
+}
+output "jenkins_password" {
+    value = <<-EOF
+
+                Please run below command 
+
+                    Username: admin
+
+                    Password: Please run below command
+                        printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath='{.data.jenkins-admin-password}' | base64 --decode);echo
+  EOF
 }

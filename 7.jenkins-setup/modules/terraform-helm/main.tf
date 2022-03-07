@@ -1,12 +1,3 @@
-provider "helm" {
-  experiments {
-    manifest = true
-  }
-  kubernetes {
-    config_path = "~/.kube/config"
-    
-  }
-}
 
 resource "helm_release" "helm_deployment" {
   name       = "${var.deployment_name}"

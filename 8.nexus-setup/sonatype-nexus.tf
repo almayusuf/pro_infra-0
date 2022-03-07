@@ -8,6 +8,24 @@ module "sonatype-nexus-terraform-helm" {
   deployment_name      = "sonatype-nexus"
   deployment_namespace = "sonatype-nexus"
   deployment_path      = "charts/sonatype-nexus/"
-  values_yaml          = ""
+  values_yaml          = <<EOF
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  hostPath: /
+  hostRepo: nexus.${var.google_domain_name}
+  tls:
+    - secretName: nexus-local-tls
+      hosts:
+        - nexus.${var.google_domain_name}
+
+EOF
 }
 

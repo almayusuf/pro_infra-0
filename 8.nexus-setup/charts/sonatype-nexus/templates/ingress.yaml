@@ -1,72 +1,82 @@
 {{- if .Values.ingress.enabled -}}
-
-{{- $serviceName := include "nexus.fullname" . -}}
-{{- if .Values.nexusProxy.svcName }}
-  {{- $serviceName = .Values.nexusProxy.svcName -}}
-{{- end }}
-
-{{- $servicePort := .Values.nexus.nexusPort -}}
-{{- if .Values.nexusProxy.enabled }}
-  {{- $servicePort = .Values.nexusProxy.port -}}
-{{- end }}
-
-{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
+{{- $fullName := include "nexus.fullname" . -}}
+{{- $svcPort := .Values.nexus.nexusPort -}}
+{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: networking.k8s.io/v1
-{{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
-  name: {{ template "nexus.fullname" . }}
-  namespace: {{ template "nexus.namespace" . }}
+  name: {{ $fullName }}
   labels:
-{{ include "nexus.labels" . | indent 4 }}
-    {{- range $key, $value := .Values.ingress.labels }}
-    {{ $key }}: {{ $value | quote }}
+    {{- include "nexus.labels" . | nindent 4 }}
+    {{- if .Values.nexus.extraLabels }}
+      {{- with .Values.nexus.extraLabels }}
+        {{ toYaml . | indent 4 }}
+      {{- end }}
     {{- end }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
-  {{- if .Values.ingress.className }}
-  ingressClassName: {{ .Values.ingress.className }}
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    {{- range .Values.ingress.tls }}
+    - hosts:
+      {{- range .hosts }}
+      - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
   {{- end }}
   rules:
-{{- if .Values.nexusProxy.env.nexusHttpHost }}
-    - host: {{ .Values.nexusProxy.env.nexusHttpHost }}
+    - host: {{ .Values.ingress.hostRepo }}
       http:
         paths:
-          - path: {{ .Values.ingress.path }}
-            {{- if $.Capabilities.APIVersions.Has "networking.k8s.io/v1" }}
-            pathType: {{ .Values.ingress.pathType }}
+          - path: {{ .Values.ingress.hostPath }}
+            pathType: Prefix
             backend:
               service:
-                name: {{ $serviceName }}
+                name: {{ $fullName }}
                 port:
-                  number: {{ $servicePort }}
-            {{- else }}
-            backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
-            {{- end }}
-{{- end }}
-  {{- with .Values.ingress.rules }}
-    {{- toYaml . | nindent 4 }}
-  {{- end -}}
-{{- if .Values.ingress.tls.enabled }}
+                  number: 8081
+
+{{ if .Values.nexus.docker.enabled }}
+{{ range $registry := .Values.nexus.docker.registries }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName | trunc 49 }}-docker-{{ $registry.port }}
+  labels:
+    {{- include "nexus.labels" $ | nindent 4 }}
+    {{- if $.Values.nexus.extraLabels }}
+      {{- with $.Values.nexus.extraLabels }}
+        {{ toYaml . | indent 4 }}
+      {{- end }}
+    {{- end }}
+    {{- with $.Values.ingress.annotations }}
+  annotations:
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
   tls:
     - hosts:
-      {{- if .Values.nexusProxy.env.nexusHttpHost }}
-        - {{ .Values.nexusProxy.env.nexusHttpHost }}
-      {{- end }}
-      {{- if .Values.ingress.tls.secretName }}
-      secretName: {{ .Values.ingress.tls.secretName | quote }}
-      {{- end }}
-  {{- with .Values.ingress.tls.hosts }}
-    {{- toYaml . | nindent 4 }}
-  {{- end -}}
-{{- end -}}
-{{- end }}
+      - {{ $registry.host | quote }}
+      secretName: {{ $registry.secretName }}
+  rules:
+    - host: {{ $registry.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName | trunc 49 }}-docker-{{ $registry.port }}
+                port:
+                  number: {{ $registry.port }}
+{{- end }} {{- /* range of nexus.docker.registries */ -}}
+{{- end }} {{- /* nexus.docker.enabled */ -}}
+{{- end }} {{- /* ingress.enabled */ -}}

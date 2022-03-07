@@ -239,7 +239,7 @@ controller:
     - workflow-aggregator:2.6
     - git:4.10.2
     - configuration-as-code:1.55.1
-    - script-security
+    - script-security:1138.v8e727069a_025
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true

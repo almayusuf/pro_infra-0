@@ -25,5 +25,25 @@ controller:
       - secretName: jenkins
         hosts:
           - "jenkins.${var.google_domain_name}"
+
+persistence:
+  existingClaim: "${var.jenkins_extra_volume}"
 EOF
+}
+
+resource "kubernetes_persistent_volume_claim" "example" {
+  metadata {
+    name = var.jenkins_extra_volume
+    namespace = "jenkins"
+  }
+
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "15Gi"
+      }
+    }
+    storage_class_name = "standard"
+  }
 }

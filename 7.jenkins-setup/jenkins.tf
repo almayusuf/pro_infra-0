@@ -4,9 +4,9 @@ module "jenkins-terraform-k8s-namespace" {
 }
 
 module "jenkins-terraform-helm" {
-    depends_on = [
-      kubernetes_persistent_volume_claim.example
-    ]
+  depends_on = [
+    kubernetes_persistent_volume_claim.example
+  ]
   source               = "./modules/terraform-helm/"
   deployment_name      = "jenkins"
   deployment_namespace = "jenkins"
@@ -34,7 +34,7 @@ EOF
 
 resource "kubernetes_persistent_volume_claim" "example" {
   metadata {
-    name = var.jenkins_extra_volume
+    name      = var.jenkins_extra_volume
     namespace = "jenkins"
   }
 
@@ -49,7 +49,7 @@ resource "kubernetes_persistent_volume_claim" "example" {
   }
 }
 output "jenkins_password" {
-    value = <<-EOF
+  value = <<-EOF
 
                 Please run below command 
 

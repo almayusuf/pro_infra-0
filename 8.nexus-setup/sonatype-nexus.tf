@@ -12,7 +12,6 @@ module "sonatype-nexus-terraform-helm" {
 
 ingress:
   enabled: true
-  ingressClassName: nginx
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     kubernetes.io/ingress.class: nginx

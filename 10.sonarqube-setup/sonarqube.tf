@@ -16,6 +16,7 @@ ingress:
       path: /
   annotations: 
     nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+    kubernetes.io/ingress.class: nginx
     ingressClassName: nginx
   tls: 
     - secretName: sonarqube

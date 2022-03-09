@@ -9,19 +9,20 @@ module "sonarqube-terraform-helm" {
   deployment_namespace = "sonarqube"
   deployment_path      = "charts/sonarqube/"
   values_yaml          = <<EOF
+
 ingress:
   enabled: true
   hosts:
     - name: "sonarqube.${var.google_domain_name}"
       path: /
   annotations: 
-    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
     ingressClassName: nginx
   tls: 
     - secretName: sonarqube
       hosts:
-       - "sonarqube.${var.google_domain_name}"
+        - "sonarqube.${var.google_domain_name}"
 EOF
 }
 

@@ -18,6 +18,9 @@ ingress:
   annotations: 
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+    ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    acme.cert-manager.io/http01-edit-in-place: "true"
   ingressClassName: nginx
   tls: 
     - secretName: sonarqube

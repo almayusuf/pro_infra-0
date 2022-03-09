@@ -9,6 +9,7 @@ module "vault-terraform-helm" {
   deployment_namespace = "vault"
   deployment_path      = "charts/vault/"
   values_yaml          = <<EOF
+server:  
   ingress:
     enabled: true
     annotations: 

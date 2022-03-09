@@ -289,7 +289,7 @@ server:
     # configure the ingress to point to the Vault active service.
     activeService: true
     hosts:
-    - host: vault.projectxconsulting.net
+    - host: 
       http:
         paths:
         - pathType: Prefix

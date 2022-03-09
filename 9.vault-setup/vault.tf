@@ -18,7 +18,17 @@ module "vault-terraform-helm" {
       acme.cert-manager.io/http01-edit-in-place: "true"
     ingressClassName: "nginx"
     hosts:
-      - host: "vault.${var.google_domain_name}"
+    - host: "vault.${var.google_domain_name}"
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: vault
+              port:
+                number: 8200
+      
     tls: 
       - secretName: vault
         hosts:

@@ -16,6 +16,9 @@ module "vault-terraform-helm" {
       ingress.kubernetes.io/ssl-redirect: "false"
       cert-manager.io/cluster-issuer: letsencrypt-prod
       acme.cert-manager.io/http01-edit-in-place: "true"
+    ingressClassName: "nginx"
+    hosts:
+      - host: "vault.${var.google_domain_name}"
   EOF
 }
 

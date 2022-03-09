@@ -19,6 +19,10 @@ module "vault-terraform-helm" {
     ingressClassName: "nginx"
     hosts:
       - host: "vault.${var.google_domain_name}"
+    tls: 
+      - secretName: vault
+        hosts:
+          - "vault.${var.google_domain_name}"
   EOF
 }
 

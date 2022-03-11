@@ -9,28 +9,14 @@ module "prometheus-terraform-helm" {
   deployment_namespace = "prometheus"
   deployment_path      = "charts/prometheus/"
   values_yaml          = <<-EOF
-server:
-  enabled: true
-  annotations: 
-    ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    acme.cert-manager.io/http01-edit-in-place: "true"
-  hosts: 
-  - "prometheus.${var.google_domain_name}"
-  tls: 
-  - secretName: prometheus-server-tls
-  hosts:
-  - "prometheus.${var.google_domain_name}"
-  ingressClassName: nginx
 alertmanager:
   ingress:
     enabled: true
     annotations: 
-    ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    acme.cert-manager.io/http01-edit-in-place: "true"
+      ingress.kubernetes.io/ssl-redirect: "false"
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      acme.cert-manager.io/http01-edit-in-place: "true"
     hosts: 
       - "alertmanager.${var.google_domain_name}"
     ingressClassName: nginx
@@ -38,6 +24,23 @@ alertmanager:
       - secretName: alertmanager
         hosts:
           - "alertmanager.${var.google_domain_name}"
+
+server:
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "false"
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      acme.cert-manager.io/http01-edit-in-place: "true"
+    hosts: 
+      - "prometheus.${var.google_domain_name}"
+    tls: 
+      - secretName: prometheus-server-tls
+        hosts:
+          - "prometheus.${var.google_domain_name}"
+
   EOF
 }
 

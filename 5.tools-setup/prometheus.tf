@@ -14,11 +14,11 @@ alertmanager:
     enabled: true
     annotations: 
       ingress.kubernetes.io/ssl-redirect: "false"
+      kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: letsencrypt-prod
       acme.cert-manager.io/http01-edit-in-place: "true"
     hosts: 
       - "alertmanager.${var.google_domain_name}"
-    ingressClassName: nginx
     tls: 
       - secretName: alertmanager
         hosts:

@@ -16,7 +16,6 @@ ingress:
     - name: "sonarqube.${var.google_domain_name}"
       path: /
   annotations: 
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "64m"
     ingress.kubernetes.io/ssl-redirect: "false"
     cert-manager.io/cluster-issuer: letsencrypt-prod

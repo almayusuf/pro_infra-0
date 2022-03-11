@@ -29,7 +29,7 @@ EOF
 }
 
 output "sonatype_admin_password" {
-    value = <<EOF
+  value = <<EOF
         Find the pod in sonatype-nexus namespace and login to it. And run 
         cat /nexus-data/admin.password 
 EOF

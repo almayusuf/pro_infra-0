@@ -9,7 +9,13 @@ module "sonatype-nexus-terraform-helm" {
   deployment_namespace = "sonatype-nexus"
   deployment_path      = "charts/sonatype-nexus/"
   values_yaml          = <<EOF
-
+nexus:
+  docker:
+    enabled: true
+    registries:
+      - host: "docker.${var.google_domain_name}"
+        port: 8085
+        secretName: docker-tls
 ingress:
   enabled: true
   annotations:

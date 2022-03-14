@@ -2,11 +2,7 @@ FROM centos:7
 
 COPY gcloud.repo  /etc/yum.repos.d/
 
-RUN yum install unzip                  && \
-                 wget                  && \ 
-                 git                   && \
-                 telnet                && \
-                 google-cloud-sdk -y   && \
+RUN yum install unzip  wget   git telnet  google-cloud-sdk -y   && \
 
 
 

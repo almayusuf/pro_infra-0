@@ -1,6 +1,14 @@
 FROM centos:7
 
-RUN yum install unzip  wget   git telnet -y   && \
+COPY gcloud.repo  /etc/yum.repos.d/
+
+RUN yum install unzip                  && \
+                 wget                  && \ 
+                 git                   && \
+                 telnet                && \
+                 google-cloud-sdk -y   && \
+
+
 
     # below code installs helm 
     curl -O https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz && \
@@ -24,6 +32,13 @@ RUN yum install unzip  wget   git telnet -y   && \
 	rm -rf /usr/sbin/packer && \
 	yum install -y yum-utils && \
 	yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && \
-	yum -y install packer 
+	yum -y install packer && \
 	
-	
+
+	# below code installs sonar-scanner
+	curl -O https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && \
+    unzip sonar-scanner-cli-4.7.0.2747-linux.zip  && \
+
+    
+
+ENV PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/

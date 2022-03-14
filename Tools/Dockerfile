@@ -11,4 +11,10 @@ RUN yum install unzip  wget   git telnet -y   && \
 	# below code installs terraform
 	curl -O https://releases.hashicorp.com/terraform/0.14.11/terraform_0.14.11_linux_amd64.zip && \
 	unzip terraform_0.14.11_linux_amd64.zip && \
-	mv terraform /usr/bin/
+	mv terraform /usr/bin/ && \
+	
+	
+	# below code installs kubectl 
+	curl -LO https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl && \
+	chmod +x kubectl && \
+	mv kubectl /usr/bin/

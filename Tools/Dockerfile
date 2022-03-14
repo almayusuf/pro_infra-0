@@ -6,3 +6,9 @@ RUN yum install unzip  wget   git telnet -y   && \
     curl -O https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz && \
 	tar xzvf helm-v3.8.1-linux-amd64.tar.gz && \
     mv linux-amd64/helm /usr/bin/ && \
+
+	
+	# below code installs terraform
+	curl -O https://releases.hashicorp.com/terraform/0.14.11/terraform_0.14.11_linux_amd64.zip && \
+	unzip terraform_0.14.11_linux_amd64.zip && \
+	mv terraform /usr/bin/

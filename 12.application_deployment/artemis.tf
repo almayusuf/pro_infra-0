@@ -10,8 +10,8 @@ image:
   tag: "${var.tag}"
 
 service:
-type: ClusterIP
-port: 5000
+  type: ClusterIP
+  port: 5000
 
 ingress:
   enabled: true

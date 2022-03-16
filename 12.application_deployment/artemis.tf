@@ -9,6 +9,9 @@ image:
   repository: "${var.image}"
   tag: "${var.tag}"
 
+imagePullSecrets:
+  - name: regcred
+
 service:
   type: ClusterIP
   port: 5000

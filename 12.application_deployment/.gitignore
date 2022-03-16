@@ -1,0 +1,12 @@
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+.terraform
+terraform.tfstate*
+
+backend.tf
+
+12.application_deployment/backend.tf
+/home/projectfarrukh/project_infrastructure/12.application_deployment/backend.tf
+service-account.json
+envs/
+dev.tfvars

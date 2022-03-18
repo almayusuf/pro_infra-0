@@ -4,6 +4,27 @@ module "grafana-terraform-helm" {
   deployment_namespace = "grafana"
   deployment_path      = "charts/grafana/"
   values_yaml          = <<EOF
+dashboardProviders: 
+ dashboardproviders.yaml:
+   apiVersion: 1
+   providers:
+   - name: 'default'
+     orgId: 1
+     folder: ''
+     type: file
+     disableDeletion: false
+     editable: true
+     options:
+       path: /var/lib/grafana/dashboards/default
+dashboards: 
+  default:
+    kubernetes-apiserver:
+      file: dashboards/kubernetes-apiserver.json
+    kubernetes-monitoring:
+      file: dashboards/kubernetes-monitoring.json     
+    kubernetes-nodes:
+      file: dashboards/kubernetes-nodes.json
+
 ingress:
   enabled: true
   annotations:

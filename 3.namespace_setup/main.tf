@@ -62,3 +62,14 @@ module "canada" {
   }
   name = "canada"
 } 
+
+module "qa" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "qa"
+} 

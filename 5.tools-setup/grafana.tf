@@ -24,7 +24,8 @@ dashboards:
       file: dashboards/kubernetes-monitoring.json     
     kubernetes-nodes:
       file: dashboards/kubernetes-nodes.json
-
+    kubernetes-volume:
+      file: dashboards/kubernetes-volume.json
 ingress:
   enabled: true
   annotations:

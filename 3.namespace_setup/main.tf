@@ -61,7 +61,7 @@ module "canada" {
     name = "new-labels"
   }
   name = "canada"
-} 
+}
 
 module "qa" {
   source = "./module"

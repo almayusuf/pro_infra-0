@@ -73,3 +73,14 @@ module "qa" {
   }
   name = "qa"
 } 
+
+module "stage" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "stage"
+} 

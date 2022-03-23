@@ -72,7 +72,7 @@ module "qa" {
     name = "new-labels"
   }
   name = "qa"
-} 
+}
 
 module "stage" {
   source = "./module"
@@ -83,4 +83,15 @@ module "stage" {
     name = "new-labels"
   }
   name = "stage"
+} 
+
+module "prod" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "prod"
 } 

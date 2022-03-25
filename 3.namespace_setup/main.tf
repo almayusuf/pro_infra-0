@@ -83,7 +83,7 @@ module "stage" {
     name = "new-labels"
   }
   name = "stage"
-} 
+}
 
 module "prod" {
   source = "./module"

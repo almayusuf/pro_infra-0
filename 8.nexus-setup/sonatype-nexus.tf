@@ -37,6 +37,10 @@ ingress:
       hosts:
         - nexus.${var.google_domain_name}
 
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  storageSize: "${var.storageSize}"
 EOF
 }
 

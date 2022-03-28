@@ -8,6 +8,10 @@ module "ingress-terraform-helm" {
   deployment_name      = "ingress"
   deployment_namespace = "ingress"
   deployment_path      = "charts/nginx-ingress/"
-  values_yaml          = ""
+  values_yaml          = <<EOF
+controller:
+  service:
+    loadBalancerSourceRanges: ""${var.loadBalancerSourceRanges}"
+  EOF
 }
 

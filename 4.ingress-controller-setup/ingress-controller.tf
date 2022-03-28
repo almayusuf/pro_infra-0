@@ -14,15 +14,15 @@ controller:
     create: true
     type: LoadBalancer
     loadBalancerSourceRanges: 
-      - "104.181.144.186/32"   # Evolve Cyber Office
-      - "72.68.108.222/32"     # Maksat Sadyrov
-      - "73.74.242.241/32"     # Azizbek 
-      - "99.7.19.155/32"       # DJ
-      - "104.57.11.55/32"      # Suheda
-      - "73.8.110.80/32"       # Beibars
-      - "147.219.244.131/32"   # Altai
-      - "104.185.25.250/32"    # Anastasia
-      - "0.0.0.0/0"
-      - "98.253.225.168/32"    # Anastasia Grosu
+      ${var.loadBalancerSourceRanges[0]}
+      ${var.loadBalancerSourceRanges[1]}
+      ${var.loadBalancerSourceRanges[2]}
+      ${var.loadBalancerSourceRanges[3]}
+      ${var.loadBalancerSourceRanges[4]}
+      ${var.loadBalancerSourceRanges[5]}
+      ${var.loadBalancerSourceRanges[6]}
+      ${var.loadBalancerSourceRanges[7]}
+      ${var.loadBalancerSourceRanges[8]}
+      ${var.loadBalancerSourceRanges[9]}
   EOF
 }

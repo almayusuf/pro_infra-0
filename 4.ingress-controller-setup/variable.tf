@@ -1,3 +1,3 @@
 # variable "loadBalancerSourceRanges" {
-#   type = list(any)
+#   type = list
 # }

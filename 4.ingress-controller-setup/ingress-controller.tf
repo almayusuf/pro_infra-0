@@ -11,7 +11,9 @@ module "ingress-terraform-helm" {
   values_yaml          = <<EOF
 controller:
   service:
-    loadBalancerSourceRanges: ""${var.loadBalancerSourceRanges}"
+    create: true
+    type: LoadBalancer
+    loadBalancerSourceRanges: "${var.loadBalancerSourceRanges}"
   EOF
 }
 

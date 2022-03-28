@@ -13,7 +13,9 @@ controller:
   service:
     create: true
     type: LoadBalancer
-    loadBalancerSourceRanges: "${var.loadBalancerSourceRanges}"
+    loadBalancerSourceRanges: 
+    - "104.181.144.186/32"
+    - "127.0.0.1/24"
   EOF
 }
 

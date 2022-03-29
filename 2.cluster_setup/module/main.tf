@@ -10,10 +10,10 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = false
   initial_node_count       = var.gke_config["node_count"]
   node_locations = [
-    "us-central1-a",
-    "us-central1-b",
-    "us-central1-c",
-    "us-central1-f"
+    "${var.gke_config["region"]}-a",
+    "${var.gke_config["region"]}-b",
+    "${var.gke_config["region"]}-c",
+    "${var.gke_config["region"]}-f"
   ]
   cluster_autoscaling {
     enabled = true

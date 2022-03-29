@@ -1,19 +1,39 @@
 provider "google" {
-	region = var.gke_config["region"]
-	zone = var.gke_config["zone"]
+  region = var.gke_config["region"]
+  zone   = var.gke_config["zone"]
 }
 
 
 resource "google_container_cluster" "primary" {
-	name = var.gke_config["cluster_name"]
-	location = var.gke_config["region"]
-	remove_default_node_pool = false
-	initial_node_count = var.gke_config["node_count"]
-	master_auth {
-		client_certificate_config {
-		issue_client_certificate = false
-		}
-	}
+  name                     = var.gke_config["cluster_name"]
+  location                 = var.gke_config["region"]
+  remove_default_node_pool = false
+  initial_node_count       = var.gke_config["node_count"]
+  node_locations = [
+    "us-central1-a",
+    "us-central1-b",
+    "us-central1-c",
+    "us-central1-f"
+  ]
+  cluster_autoscaling {
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      minimum       = 1
+      maximum       = 48
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum       = 4
+      maximum       = 96
+    }
+  }
+
+  master_auth {
+    client_certificate_config {
+      issue_client_certificate = false
+    }
+  }
 }
 
 
@@ -35,21 +55,21 @@ resource "google_container_cluster" "primary" {
 # }
 
 variable "gke_config" {
-	type = map(any)
-	default = {
-		region = "us-central1"
-		zone = "us-central1-c"
-		cluster_name = "my-gke-cluster"
-		machine_type = "e2-medium"
-		node_count = 1
-		node_pool_name = "my-node-pool"
-		preemptible = true
-	}
+  type = map(any)
+  default = {
+    region         = "us-central1"
+    zone           = "us-central1-c"
+    cluster_name   = "my-gke-cluster"
+    machine_type   = "e2-medium"
+    node_count     = 1
+    node_pool_name = "my-node-pool"
+    preemptible    = true
+  }
 }
 resource "null_resource" "set-kubeconfig" {
-    depends_on = [
-      google_container_cluster.primary
-    ]
+  depends_on = [
+    google_container_cluster.primary
+  ]
   triggers = {
     always_run = "${timestamp()}"
   }

@@ -13,6 +13,8 @@ module "jenkins-terraform-helm" {
   deployment_path      = "charts/jenkins/"
   values_yaml          = <<EOF
 controller:
+  image: "jenkins/jenkins"
+  tag: "2.337-jdk11"
   ingress:
     enabled: yes
     apiVersion: "extensions/v1beta1"

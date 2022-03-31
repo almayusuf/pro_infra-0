@@ -8,6 +8,6 @@ module "gke" {
     node_count     = 1
     node_pool_name = "my-node-pool"
     preemptible    = true
-    node_version   = "1.21.6-gke.1503"
+    node_version   = "1.21.6"
   }
 }

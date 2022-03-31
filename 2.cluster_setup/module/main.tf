@@ -3,12 +3,16 @@ provider "google" {
   zone   = var.gke_config["zone"]
 }
 
-
+data "google_container_engine_versions" "us-central1-c" {
+  provider       = google-beta
+  location       = var.gke_config["region"]
+  version_prefix = var.gke_config["node_version"]
+}
 resource "google_container_cluster" "primary" {
   name                     = var.gke_config["cluster_name"]
   location                 = var.gke_config["region"]
   remove_default_node_pool = false
-  node_version             = var.gke_config["node_version"]
+  node_version             = data.google_container_engine_versions.us-central1-c.latest_node_version
   initial_node_count       = var.gke_config["node_count"]
   node_locations = [
     "${var.gke_config["region"]}-a",
@@ -46,7 +50,7 @@ variable "gke_config" {
     machine_type   = "e2-medium"
     node_count     = 1
     node_pool_name = "my-node-pool"
-    node_version   = "1.21.6-gke.1503"
+    node_version   = "1.21.6"
     preemptible    = true
   }
 }

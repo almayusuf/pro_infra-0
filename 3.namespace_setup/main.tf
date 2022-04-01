@@ -95,3 +95,49 @@ module "prod" {
   }
   name = "prod"
 } 
+
+
+
+module "canada-dev" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "canada-dev"
+}
+
+module "canada-qa" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "canada-qa"
+}
+
+module "canada-stage" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "canada-stage"
+}
+
+module "canada-prod" {
+  source = "./module"
+  annotations = {
+    name = "new-annotation"
+  }
+  labels = {
+    name = "new-labels"
+  }
+  name = "canada-prod"
+}

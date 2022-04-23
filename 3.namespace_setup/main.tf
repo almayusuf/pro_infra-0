@@ -94,7 +94,7 @@ module "prod" {
     name = "new-labels"
   }
   name = "prod"
-} 
+}
 
 
 

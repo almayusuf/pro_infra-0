@@ -7,3 +7,6 @@ resource "kubernetes_namespace" "k8s-namespace" {
     name = "${var.deployment_namespace}"
   }
 }
+output namespace {
+    value = resource.kubernetes_namespace.k8s-namespace
+}

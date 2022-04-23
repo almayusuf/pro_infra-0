@@ -5,7 +5,8 @@ module "jenkins-terraform-k8s-namespace" {
 
 module "jenkins-terraform-helm" {
   depends_on = [
-    kubernetes_persistent_volume_claim.example
+    kubernetes_persistent_volume_claim.example,
+    module.jenkins-terraform-k8s-namespace
   ]
   source               = "./modules/terraform-helm/"
   deployment_name      = "jenkins"

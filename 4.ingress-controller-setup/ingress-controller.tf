@@ -13,16 +13,13 @@ controller:
   service:
     create: true
     type: LoadBalancer
-    loadBalancerSourceRanges: 
-      ${var.loadBalancerSourceRanges[0]}
-      ${var.loadBalancerSourceRanges[1]}
-      ${var.loadBalancerSourceRanges[2]}
-      ${var.loadBalancerSourceRanges[3]}
-      ${var.loadBalancerSourceRanges[4]}
-      ${var.loadBalancerSourceRanges[5]}
-      ${var.loadBalancerSourceRanges[6]}
-      ${var.loadBalancerSourceRanges[7]}
-      ${var.loadBalancerSourceRanges[8]}
-      ${var.loadBalancerSourceRanges[9]}
+    loadBalancerSourceRanges: [
+        "${var.loadBalancerSourceRanges[0]}",
+        "${var.loadBalancerSourceRanges[1]}",
+        "${var.loadBalancerSourceRanges[2]}",
+        "${var.loadBalancerSourceRanges[3]}",
+        "${var.loadBalancerSourceRanges[4]}",
+        "${var.loadBalancerSourceRanges[5]}",
+    ]
   EOF
 }

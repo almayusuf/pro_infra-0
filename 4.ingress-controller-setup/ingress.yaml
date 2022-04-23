@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: projectxconsulting.net
+  - host: "${var.google_domain_name}"
     http:
       paths:
       - path: /

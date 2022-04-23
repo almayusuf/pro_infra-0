@@ -1,2 +1,4 @@
 variable "google_domain_name" {}
-variable "storageSize" {}
+variable "storageSize" {
+    default = "25Gi"
+}

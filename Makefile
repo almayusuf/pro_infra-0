@@ -7,8 +7,8 @@ cluster-setup : project-setup
 namespace-setup : cluster-setup
 		cd 3.namespace_setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve 
 
-# ingress-controller-setup : namespace-setup
-# 		cd 4.ingress-controller-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
+ingress-controller-setup : namespace-setup
+		cd 4.ingress-controller-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
 
 # tools-setup : ingress-controller-setup
 # 		cd 5.tools-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars

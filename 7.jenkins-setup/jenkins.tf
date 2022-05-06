@@ -45,7 +45,7 @@ resource "kubernetes_persistent_volume_claim" "example" {
     access_modes = ["ReadWriteOnce"]
     resources {
       requests = {
-        storage = "15Gi"
+        storage = var.storage
       }
     }
     storage_class_name = "standard"

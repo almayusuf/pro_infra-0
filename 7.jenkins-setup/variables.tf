@@ -4,3 +4,8 @@ variable "jenkins_extra_volume" {
   type        = string
   description = "Provide volume name for jenkins"
 }
+
+variable storage {
+    type = string 
+    default = "15Gi"
+}

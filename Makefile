@@ -16,8 +16,8 @@ tools-setup : ingress-controller-setup
 domain-setup : tools-setup
 		cd 6.domain_setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
 
-# jenkins-setup : domain-setup 
-# 		cd 7.jenkins-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
+jenkins-setup : domain-setup 
+		cd 7.jenkins-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
 
 # nexus-setup : jenkins-setup
 # 		cd 8.nexus-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars

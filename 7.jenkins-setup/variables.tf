@@ -9,3 +9,7 @@ variable storage {
     type = string 
     default = "15Gi"
 }
+variable tag {
+    type = string 
+    default = "2.337-jdk11"
+}

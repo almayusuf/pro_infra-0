@@ -5,11 +5,11 @@ variable "jenkins_extra_volume" {
   description = "Provide volume name for jenkins"
 }
 
-variable storage {
-    type = string 
-    default = "15Gi"
+variable "storage" {
+  type    = string
+  default = "15Gi"
 }
-variable tag {
-    type = string 
-    default = "2.337-jdk11"
+variable "tag" {
+  type    = string
+  default = "2.337-jdk11"
 }

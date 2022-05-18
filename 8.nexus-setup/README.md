@@ -41,3 +41,20 @@ Wait for  3 minutes
 
 #### GCP Console 
 https://console.cloud.google.com/kubernetes/persistentvolumeclaim/
+
+
+## To Deploy
+### Step1
+```
+bash setenv.sh
+```
+
+### Step2
+```
+terraform init 
+```
+
+### Step3
+```
+terraform apply   -var-file envs/dev.tfvars
+```

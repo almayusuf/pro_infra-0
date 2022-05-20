@@ -22,8 +22,8 @@ jenkins-setup : domain-setup
 nexus-setup : jenkins-setup
 		cd 8.nexus-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
 
-# vault-setup : nexus-setup
-# 		cd 9.vault-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
+vault-setup : nexus-setup
+		cd 9.vault-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars
 
 # sonarqube-setup : vault-setup
 # 		cd 10.sonarqube-setup && bash setenv.sh && terraform fmt && terraform init -upgrade && terraform get -update && terraform apply -auto-approve -var-file envs/dev.tfvars

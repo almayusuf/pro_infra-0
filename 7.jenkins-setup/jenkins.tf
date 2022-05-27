@@ -15,7 +15,7 @@ module "jenkins-terraform-helm" {
   values_yaml          = <<EOF
 controller:
   image: "jenkins/jenkins"
-  tag: "2.337-jdk11"
+  tag: "2.349-jdk11"
   ingress:
     enabled: yes
     apiVersion: "extensions/v1beta1"

@@ -37,6 +37,13 @@ controller:
     # - script-security:1138.v8e727069a_025
     - role-strategy
     - monitoring
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "256Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1024Mi"
 persistence:
   existingClaim: "${var.jenkins_extra_volume}"
 EOF

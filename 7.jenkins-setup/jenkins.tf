@@ -35,7 +35,7 @@ controller:
     # - git:4.10.2
     # - configuration-as-code:1.55.1
     # - script-security:1138.v8e727069a_025
-    # - role-strategy
+    - role-strategy
     - monitoring
 persistence:
   existingClaim: "${var.jenkins_extra_volume}"

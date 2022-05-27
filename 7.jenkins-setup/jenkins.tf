@@ -42,7 +42,7 @@ controller:
       cpu: "50m"
       memory: "256Mi"
     limits:
-      cpu: "1000m"
+      cpu: "500m"
       memory: "1024Mi"
 persistence:
   existingClaim: "${var.jenkins_extra_volume}"

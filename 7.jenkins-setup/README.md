@@ -5,7 +5,7 @@
 
 #### 1. Configure backend
 ```
-bash setenv.sh
+bash setenv.sh  envs/dev/tfvars
 ```
 
 #### 2. Initialize terraform 

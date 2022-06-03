@@ -31,12 +31,12 @@ controller:
           - "jenkins.${var.google_domain_name}"
   installPlugins:
     # - kubernetes:1.31.3
-    # - workflow-aggregator:2.6
-    # - git:4.10.2
     # - configuration-as-code:1.55.1
     # - script-security:1138.v8e727069a_025
     - role-strategy
     - monitoring
+    - workflow-aggregator
+    - git
   resources:
     requests:
       cpu: "50m"

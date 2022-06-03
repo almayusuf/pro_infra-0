@@ -30,19 +30,24 @@ controller:
         hosts:
           - "jenkins.${var.google_domain_name}"
   installPlugins:
-    # - kubernetes:1.31.3
-    # - configuration-as-code:1.55.1
-    # - script-security:1138.v8e727069a_025
+    # - configuration-as-code
+    # - script-security
+    # - monitoring
+    # - git
+    - kubernetes-credentials:0.9.0
+    - bouncycastle-api:2.26
+    - kubernetes:3600.v144b_cd192ca_a_
+    - command-launcher:84.v4a_97f2027398
+    - credentials:1129.vef26f5df883c
     - role-strategy
-    - monitoring
-    - workflow-aggregator
-    - git
+    - pipeline-groovy-lib    
+    
   resources:
     requests:
       cpu: "50m"
       memory: "256Mi"
     limits:
-      cpu: "500m"
+      cpu: "1000m"
       memory: "1024Mi"
   adminUser: "${var.jenkins_user}"
   adminPassword: "${var.jenkins_password}"

@@ -37,6 +37,16 @@ ingress:
       hosts:
         - nexus.${var.google_domain_name}
 
+  resources:
+  # minimum recommended memory settings for a small, person instance from
+  # https://help.sonatype.com/repomanager3/product-information/system-requirements
+    requests:
+      cpu: 500
+      memory: 2Gi
+    limits:
+      cpu: 1024
+      memory: 2Gi
+      
 persistence:
   enabled: true
   accessMode: ReadWriteOnce

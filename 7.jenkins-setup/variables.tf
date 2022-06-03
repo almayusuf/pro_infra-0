@@ -13,3 +13,5 @@ variable "tag" {
   type    = string
   default = "2.337-jdk11"
 }
+variable "jenkins_user" {}
+variable "jenkins_password" {}

@@ -1,12 +1,12 @@
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
+  config_path = "~/.kube/config"
 }
 
 resource "kubernetes_namespace" "k8s-namespace" {
   metadata {
-    name = "${var.deployment_namespace}"
+    name = var.deployment_namespace
   }
 }
-output namespace {
-    value = resource.kubernetes_namespace.k8s-namespace
+output "namespace" {
+  value = resource.kubernetes_namespace.k8s-namespace
 }

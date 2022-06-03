@@ -39,14 +39,14 @@ controller:
   customJenkinsLabels: []
   # The default configuration uses this secret to configure an admin user
   # If you don't need that user or use a different security realm then you can disable it
-  adminSecret: true
+  # adminSecret: true
 
   hostNetworking: false
   # When enabling LDAP or another non-Jenkins identity source, the built-in admin account will no longer exist.
   # If you disable the non-Jenkins identity store and instead use the Jenkins internal one,
   # you should revert controller.adminUser to your preferred admin user:
   adminUser: "admin"
-  # adminPassword: <defaults to random>
+  adminPassword: "redhat"
   admin:
     existingSecret: ""
     userKey: jenkins-admin-user

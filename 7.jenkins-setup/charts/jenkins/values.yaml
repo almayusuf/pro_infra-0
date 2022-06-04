@@ -597,7 +597,7 @@ agent:
   # name of the secret to be used for image pulling
   imagePullSecretName:
   componentName: "jenkins-agent"
-  websocket: false
+  websocket: true
   privileged: false
   runAsUser:
   runAsGroup:

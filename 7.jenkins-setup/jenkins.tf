@@ -54,6 +54,8 @@ controller:
     - workflow-job:1186.v8def1a_5f3944                 # provides pipeline
     - workflow-multibranch:716.vc692a_e52371b_         # provides multibranch
     - workflow-aggregator:581.v0c46fa_697ffd           # provides scripted pipeline
+    - git-server:1.11
+    - mailer:414.vcc4c33714601
   resources:
     requests:
       cpu: "50m"

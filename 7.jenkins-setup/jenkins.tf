@@ -30,18 +30,30 @@ controller:
         hosts:
           - "jenkins.${var.google_domain_name}"
   installPlugins:
-    # - configuration-as-code
-    # - script-security
-    # - monitoring
-    # - git
     - kubernetes-credentials:0.9.0
-    - bouncycastle-api:2.26
+    - kubernetes-client-api:5.12.2-193.v26a_6078f65a_9    
+    - bouncycastle-api:2.25
     - kubernetes:3600.v144b_cd192ca_a_
     - command-launcher:84.v4a_97f2027398
     - credentials:1129.vef26f5df883c
-    - role-strategy
+    - role-strategy:488.v0634ce149b_8c
     - pipeline-groovy-lib    
-    
+    - apache-httpcomponents-client-4-api:4.5.13-1.0
+    - credentials-binding:523.vd859a_4b_122e6
+    - durable-task:496.va67c6f9eefa7
+    - jackson2-api
+    - javax-activation-api:1.2.0-3
+    - javax-mail-api:1.6.2-6
+    - jdk-tool:1.5
+    - snakeyaml-api:1.30.1
+    - ssh-credentials:277.v95c2fec1c047
+    - trilead-api:1.57.v6e90e07157e1
+    - sshd:3.237.v883d165a_c1d3
+    - jaxb:2.3.6-1
+    - metrics:4.1.6.2
+    - workflow-job:1186.v8def1a_5f3944                 # provides pipeline
+    - workflow-multibranch:716.vc692a_e52371b_         # provides multibranch
+    - workflow-aggregator:581.v0c46fa_697ffd           # provides scripted pipeline
   resources:
     requests:
       cpu: "50m"

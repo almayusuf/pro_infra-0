@@ -1,5 +1,5 @@
 variable "deployment_namespace" {
-  type = string
+  type        = string
   description = "- (Required) Namespace name."
 }
 

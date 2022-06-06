@@ -41,11 +41,12 @@ ingress:
   # minimum recommended memory settings for a small, person instance from
   # https://help.sonatype.com/repomanager3/product-information/system-requirements
     requests:
-      cpu: 500
-      memory: 2Gi
-    limits:
-      cpu: 1024
-      memory: 2Gi
+      limits:
+        cpu: "${var.limit_cpu}"
+        memory: "${var.limit_memory}"
+      requests:
+        cpu: "${var.request_cpu}"
+        memory: "${var.request_memory}"
       
 persistence:
   enabled: true
@@ -60,3 +61,8 @@ output "sonatype_admin_password" {
         cat /nexus-data/admin.password 
 EOF
 }
+
+variable "limit_cpu" {}
+variable "limit_memory" {}
+variable "request_cpu" {}
+variable "request_memory" {}

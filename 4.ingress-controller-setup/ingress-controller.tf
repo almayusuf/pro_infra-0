@@ -21,5 +21,12 @@ controller:
         "${var.loadBalancerSourceRanges[4]}",
         "${var.loadBalancerSourceRanges[5]}",
     ]
+  resources: 
+    limits:
+      cpu: "${var.limit_cpu}"
+      memory: "${var.limit_memory}"
+    requests:
+      cpu: "${var.request_cpu}"
+      memory: "${var.request_memory}"
   EOF
 }

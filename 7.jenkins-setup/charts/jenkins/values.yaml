@@ -591,13 +591,13 @@ agent:
   namespace:
   image: "jenkins/inbound-agent"
   tag: "4.11.2-4"
-  workingDir: "/home/jenkins/agent"
+  workingDir: "/home/jenkins/"
   nodeUsageMode: "NORMAL"
   customJenkinsLabels: []
   # name of the secret to be used for image pulling
   imagePullSecretName:
   componentName: "jenkins-agent"
-  websocket: true
+  websocket: false
   privileged: false
   runAsUser:
   runAsGroup:
@@ -813,10 +813,10 @@ serviceAccount:
 
 serviceAccountAgent:
   # Specifies whether a ServiceAccount should be created
-  create: false
+  create: true
   # The name of the ServiceAccount to use.
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: jenkins-agent
   annotations: {}
   imagePullSecretName:
 

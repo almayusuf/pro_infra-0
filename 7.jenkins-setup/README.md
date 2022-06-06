@@ -27,6 +27,7 @@ terraform apply    -var-file envs/dev.tfvars
 5. terraform apply -var-file envs/dev.tfvars 
 
 ### Verify:
+0. kubectl logs jenkins-0  -n jenkins    # init, jenkins, config-reload
 1. kubectl get pods -n jenkins 
 2. kubectl get pods -n ingress 
 3. kubectl get events -n jenkins 

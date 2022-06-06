@@ -37,7 +37,8 @@ controller:
     - command-launcher:84.v4a_97f2027398
     - credentials:1129.vef26f5df883c
     - role-strategy:488.v0634ce149b_8c
-    - pipeline-groovy-lib    
+    - pipeline-groovy-lib   
+    - pipeline-model-definition:2.2086.v12b_420f036e5 
     - apache-httpcomponents-client-4-api:4.5.13-1.0
     - credentials-binding:523.vd859a_4b_122e6
     - durable-task:496.va67c6f9eefa7
@@ -51,6 +52,7 @@ controller:
     - sshd:3.237.v883d165a_c1d3
     - jaxb:2.3.6-1
     - metrics:4.1.6.2
+    - workflow-basic-steps:948.v2c72a_091b_b_68
     - workflow-job:1186.v8def1a_5f3944                 # provides pipeline
     - workflow-multibranch:716.vc692a_e52371b_         # provides multibranch
     - workflow-aggregator:581.v0c46fa_697ffd           # provides scripted pipeline
